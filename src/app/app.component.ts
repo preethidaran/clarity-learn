@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { DatagridCellRenderer } from '@clr/angular/data/datagrid/render/cell-renderer';
-import { Observable } from 'rxjs';
 import { UserReports } from 'src/userReports';
 import { ApiServiceService } from './api-service.service';
 
