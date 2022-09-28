@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ClrForm } from '@clr/angular';
 import { UserReports } from 'src/userReports';
 import { ApiServiceService } from './api-service.service';
 
@@ -9,10 +11,28 @@ import { ApiServiceService } from './api-service.service';
 })
 export class AppComponent {
   users: UserReports[] = [];
+  open = false;
+  @ViewChild(ClrForm) clrForm: any;
+  pattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
 
   constructor(private service: ApiServiceService) {}
   ngOnInit() {
     this.getAllReports();
+  }
+
+  userForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.pattern),
+    ]),
+  });
+
+  // to open dialog box
+
+  openModal() {
+    this.open = true;
+    // console.log('HI');
   }
 
   public getAllReports() {

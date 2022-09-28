@@ -1,3 +1,62 @@
+<button class="btn btn-primary" (click)="openModal()">Add User</button>
+
+<clr-modal [(clrModalOpen)]="open" clrLableSize="4">
+  <h3 class="modal-title">User Form</h3>
+  <div class="modal-body">
+    <form [formGroup]="userForm" class="clr-form clr-form-compact">
+      <clr-input-container>
+        <label class="clr-control-label required">Name :</label>
+        <input clrInput type="text" name="name" required formControlName="name" />
+        <clr-control-error *clrIfError="'required'">This field is required</clr-control-error>
+      </clr-input-container>
+
+      <!-- Email -->
+      <clr-input-container>
+        <label>Email :</label>
+        <input clrInput type="text" name="email" required formControlName="email" />
+        <clr-control-error *clrIfError="'required'">This field is required</clr-control-error>
+        <clr-control-error *clrIfError="'pattern'; error as err">It must match the pattern
+        </clr-control-error>
+      </clr-input-container>
+
+      <!-- Radio button -->
+      <clr-radio-container clrInline="">
+        <label>Gender :</label>
+        <clr-radio-wrapper>
+          <input type="radio" clrRadio value="male" name="gender">
+          <label>Male</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input type="radio" clrRadio value="female" name="gender">
+          <label>Female</label>
+        </clr-radio-wrapper>
+      </clr-radio-container>
+
+
+      <!-- Checkbox -->
+
+      <clr-checkbox-container clrInline="">
+        <label>Status</label>
+        <clr-checkbox-wrapper>
+          <input type="checkbox" clrCheckbox value="active" name="status" />
+          <label>Active</label>
+        </clr-checkbox-wrapper>
+        <clr-checkbox-wrapper>
+          <input type="checkbox" clrCheckbox value="inactive" name="status" />
+          <label>Inactive</label>
+        </clr-checkbox-wrapper>
+      </clr-checkbox-container>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" (click)=" open=false">Submit</button>
+  </div>
+</clr-modal>
+
+
+<!-- API display using datagrid -->
+<br>
 <clr-datagrid>
 
   <clr-dg-column [style.width.p]="20">ID</clr-dg-column>
