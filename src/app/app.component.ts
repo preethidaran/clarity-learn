@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserReports } from 'src/userReports';
 import { ApiServiceService } from './api-service.service';
@@ -12,6 +12,8 @@ export class AppComponent {
   users: UserReports[] = [];
   open = false;
   pattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
+  list: any[] = [];
+  id: number = 3547;
 
   constructor(private service: ApiServiceService) {}
   ngOnInit() {
@@ -38,5 +40,18 @@ export class AppComponent {
       console.log(data);
       this.users = data;
     });
+  }
+
+  //to add values
+
+  addItem(name: string, email: string, status: string, gender: string) {
+    this.list.push({
+      id: (this.id -= 1),
+      name: name,
+      email: email,
+      gender: gender,
+      status: status,
+    });
+    this.open = false;
   }
 }
