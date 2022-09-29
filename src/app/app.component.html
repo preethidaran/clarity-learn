@@ -6,14 +6,14 @@
     <form [formGroup]="userForm" class="clr-form clr-form-compact">
       <clr-input-container>
         <label class="clr-control-label required">Name :</label>
-        <input clrInput type="text" name="name" required formControlName="name" />
+        <input clrInput type="text" name="name" required formControlName="name" #name />
         <clr-control-error *clrIfError="'required'">This field is required</clr-control-error>
       </clr-input-container>
 
       <!-- Email -->
       <clr-input-container>
         <label>Email :</label>
-        <input clrInput type="text" name="email" required formControlName="email" />
+        <input clrInput type="text" name="email" required formControlName="email" #email />
         <clr-control-error *clrIfError="'required'">This field is required</clr-control-error>
         <clr-control-error *clrIfError="'pattern'; error as err">It must match the pattern
         </clr-control-error>
@@ -23,37 +23,51 @@
       <clr-radio-container clrInline="">
         <label>Gender :</label>
         <clr-radio-wrapper>
-          <input type="radio" clrRadio value="male" name="gender">
+          <input type="radio" clrRadio value="male" name="gender" #gender>
           <label>Male</label>
         </clr-radio-wrapper>
         <clr-radio-wrapper>
-          <input type="radio" clrRadio value="female" name="gender">
+          <input type="radio" clrRadio value="female" name="gender" #gender>
           <label>Female</label>
+        </clr-radio-wrapper>
+      </clr-radio-container>
+
+
+      <clr-radio-container clrInline="">
+        <label>Status</label>
+        <clr-radio-wrapper>
+          <input type="radio" clrRadio value="active" name="status" #status />
+          <label>Active</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input type="radio" clrRadio value="inactive" name="status" #status />
+          <label>Inactive</label>
         </clr-radio-wrapper>
       </clr-radio-container>
 
 
       <!-- Checkbox -->
 
-      <clr-checkbox-container clrInline="">
+      <!-- <clr-checkbox-container clrInline="">
         <label>Status</label>
         <clr-checkbox-wrapper>
-          <input type="checkbox" clrCheckbox value="active" name="status" />
+          <input type="checkbox" clrCheckbox value="active" name="status" #status />
           <label>Active</label>
         </clr-checkbox-wrapper>
         <clr-checkbox-wrapper>
-          <input type="checkbox" clrCheckbox value="inactive" name="status" />
+          <input type="checkbox" clrCheckbox value="inactive" name="status" #status />
           <label>Inactive</label>
         </clr-checkbox-wrapper>
-      </clr-checkbox-container>
+      </clr-checkbox-container> -->
 
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" (click)=" open=false">Submit</button>
+    <button class="btn btn-danger" (click)=" open=false">Close</button> &nbsp;
+    <button class="btn btn-primary"
+      (click)="addItem(name.value, email.value, status.value, gender.value)">Submit</button>
   </div>
 </clr-modal>
-
 
 <!-- API display using datagrid -->
 <br>
@@ -72,8 +86,13 @@
     <clr-dg-cell>{{user.gender}}</clr-dg-cell>
     <clr-dg-cell>{{user.status}}</clr-dg-cell>
   </clr-dg-row>
-
-
+  <clr-dg-row *ngFor="let item of list">
+    <clr-dg-cell>{{item.id}}</clr-dg-cell>
+    <clr-dg-cell>{{item.name}}</clr-dg-cell>
+    <clr-dg-cell>{{item.email}}</clr-dg-cell>
+    <clr-dg-cell>{{item.gender}}</clr-dg-cell>
+    <clr-dg-cell>{{item.status}}</clr-dg-cell>
+  </clr-dg-row>
 
 
 </clr-datagrid>
