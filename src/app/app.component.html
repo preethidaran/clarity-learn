@@ -1,3 +1,4 @@
+<button class="btn btn-success" (click)="showSpin()">Refresh</button>
 <button class="btn btn-primary" (click)="openModal()">Add User</button>
 
 <clr-modal [(clrModalOpen)]="open" clrLableSize="4">
@@ -71,7 +72,23 @@
 
 <!-- API display using datagrid -->
 <br>
-<clr-datagrid>
+
+
+<!-- 
+  only spinner
+<div class="content-container">
+  <div class="content-area centered-content-area">
+    <div *ngIf="displayProgressSpinner">
+
+      <clr-spinner clrMedium clrAssertive></clr-spinner>
+    </div>
+  </div>
+</div> -->
+
+
+
+<!-- to load datagrid alone  clrdgloading-->
+<clr-datagrid [clrDgLoading]="displayProgressSpinner">
 
   <clr-dg-column [style.width.p]="20">ID</clr-dg-column>
   <clr-dg-column>Name</clr-dg-column>
