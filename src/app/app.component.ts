@@ -17,6 +17,9 @@ export class AppComponent {
   list: any[] = [];
   id: number = 3530;
   displayProgressSpinner = false;
+  selected: UserReports[] = [];
+  openEditModal = false;
+  selectedRowUser: any[] = [];
 
   constructor(private service: ApiServiceService) {}
   ngOnInit() {
@@ -32,18 +35,19 @@ export class AppComponent {
   });
 
   // to open dialog box
-
   openModal() {
     this.open = true;
-    // console.log('HI');
   }
 
-  // public getAllSpaceReports() {
-  //   this.service.spaceReports().subscribe((data) => {
-  //     console.log(data);
-  //     // this.spaceCrafts = data;
-  //   });
-  // }
+  onSelect(user: any) {
+    this.selectedRowUser = user;
+    console.log('Hi');
+    console.log(this.selectedRowUser);
+  }
+
+  openEditDialogModal() {
+    this.openEditModal = true;
+  }
 
   public getAllReports() {
     this.service.userReports().subscribe((data) => {
@@ -76,4 +80,11 @@ export class AppComponent {
       console.log('HI');
     });
   }
+
+  //to save user
+
+  // save(user){
+  //   user = Object.assign(this.editUser);
+  //   this.editUser = null;
+  // }
 }

@@ -16,5 +16,8 @@ export class ApiServiceService {
 
   public userReports() {
     return this.http.get<UserReports[]>('https://gorest.co.in/public/v2/users');
+    // return this.http.get<UserReports[]>(
+    //   'https://official-joke-api.appspot.com/random_joke'
+    // );
   }
 }
