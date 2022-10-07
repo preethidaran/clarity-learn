@@ -19,7 +19,6 @@ export class AppComponent {
   displayProgressSpinner = false;
   selected: UserReports[] = [];
   openEditModal = false;
-  selectedRowUser: any[] = [];
 
   constructor(private service: ApiServiceService) {}
   ngOnInit() {
@@ -37,12 +36,6 @@ export class AppComponent {
   // to open dialog box
   openModal() {
     this.open = true;
-  }
-
-  onSelect(user: any) {
-    this.selectedRowUser = user;
-    console.log('Hi');
-    console.log(this.selectedRowUser);
   }
 
   openEditDialogModal() {

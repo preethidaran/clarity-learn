@@ -94,9 +94,23 @@
     <button class="btn btn-warning" (click)="openEditDialogModal()">Edit</button>
     <clr-modal [(clrModalOpen)]="openEditModal" clrLableSize="4">
 
-      <div class="modal-body" *ngIf="selected">
+      <div class="modal-body">
+        <!-- {{selected | json}} -->
+        <div *ngFor="let userreport of selected | keyvalue">
+          <!-- {{userreport.key}}:{{userreport.value}} -->
 
+          {{userreport.value}}
+
+        </div>
+        <form class="clr-form clr-form-compact">
+          <clr-input-container>
+            <label class="clr-control-label required">Name :</label>
+            <clr-dg-cell> <input clrInput type="text" name="name" required [(ngModel)]="selected" /> </clr-dg-cell>
+            <clr-control-error *clrIfError="'required'">This field is required</clr-control-error>
+          </clr-input-container>
+        </form>
       </div>
+
 
       <button>Add</button>
 
@@ -109,7 +123,7 @@
   <clr-dg-column [clrDgField]="'gender'">Gender</clr-dg-column>
   <clr-dg-column [clrDgField]="'status'">Status</clr-dg-column>
 
-  <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user" (click)="onSelect(user)">
+  <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
     <clr-dg-cell>{{user.id}}</clr-dg-cell>
     <clr-dg-cell>{{user.name}}</clr-dg-cell>
     <clr-dg-cell>{{user.email}}</clr-dg-cell>
