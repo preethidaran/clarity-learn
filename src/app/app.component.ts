@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SpaceCrafts } from 'src/spacecrafts';
 import { UserReports } from 'src/userReports';
@@ -19,6 +19,7 @@ export class AppComponent {
   displayProgressSpinner = false;
   selected: UserReports[] = [];
   openEditModal = false;
+  value!: string;
 
   constructor(private service: ApiServiceService) {}
   ngOnInit() {
@@ -51,7 +52,7 @@ export class AppComponent {
 
   //to add values
 
-  addItem(name: string, email: string, status: string, gender: string) {
+  addUser(name: string, email: string, status: string, gender: string) {
     this.list.push({
       id: (this.id -= 1),
       name: name,
@@ -74,10 +75,14 @@ export class AppComponent {
     });
   }
 
-  //to save user
+  // to get changed input from the field
 
-  // save(user){
-  //   user = Object.assign(this.editUser);
-  //   this.editUser = null;
-  // }
+  sendTheNewValue(event: any) {
+    this.value = event.target.value;
+    console.log(this.value);
+  }
+
+  EditUser() {
+    this.openEditModal = false;
+  }
 }
