@@ -17,7 +17,7 @@ export class AppComponent {
   list: any[] = [];
   id: number = 3530;
   displayProgressSpinner = false;
-  selected: any = {};
+  selected: any;
   openEditModal = false;
   value!: string;
 
