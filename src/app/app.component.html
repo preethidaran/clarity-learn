@@ -74,53 +74,59 @@
 
 <!-- to load datagrid alone  clrdgloading-->
 
-<clr-datagrid [clrDgLoading]="displayProgressSpinner" [(clrDgSingleSelected)]="selected" [clrDgRowSelection]="true">
-  <clr-dg-action-bar *ngIf="selected">
-    <button class="btn btn-warning" (click)="openEditDialogModal()">Edit</button>
-    <clr-modal [(clrModalOpen)]="openEditModal" clrLableSize="4">
-      <h2 class="modal-title">User Edit</h2>
-      <div class="modal-body">
-        <div *ngFor="let userreport of selected | keyvalue">
-          <form class="clr-form clr-form-compact">
-            <clr-input-container>
-              <label class="clr-control-label required">{{userreport.key}}</label>
-              <input clrInput type="text" name="userchange" required [(ngModel)]="userreport.value"
-                (input)="sendTheNewValue($event)" />
-            </clr-input-container>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-danger" (click)=" openEditModal=false">Close</button> &nbsp;
-          <button class="btn btn-primary" (click)=" EditUser()">Submit</button>
-        </div>
-      </div>
+<clr-main-container>
+  <div class="content-container">
+    <div class="content-area">
 
-    </clr-modal>
-  </clr-dg-action-bar>
+      <clr-datagrid [clrDgLoading]="displayProgressSpinner" [(clrDgSingleSelected)]="selected"
+        [clrDgRowSelection]="true">
+        <clr-dg-action-bar *ngIf="selected">
+          <button class="btn btn-warning" (click)="openEditDialogModal()">Edit</button>
+          <clr-modal [(clrModalOpen)]="openEditModal" clrLableSize="4">
+            <h2 class="modal-title">User Edit</h2>
+            <div class="modal-body">
+              <div *ngFor="let userreport of selected | keyvalue">
+                <form class="clr-form clr-form-compact">
+                  <clr-input-container>
+                    <label class="clr-control-label required">{{userreport.key}}</label>
+                    <input clrInput type="text" name="userchange" required [(ngModel)]="userreport.value"
+                      (input)="sendTheNewValue($event)" />
+                  </clr-input-container>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-danger" (click)=" openEditModal=false">Close</button> &nbsp;
+                <button class="btn btn-primary" (click)=" EditUser()">Submit</button>
+              </div>
+            </div>
 
-  <clr-dg-column [style.width.p]="20">ID</clr-dg-column>
-  <clr-dg-column>Name</clr-dg-column>
-  <clr-dg-column>Email</clr-dg-column>
-  <clr-dg-column [clrDgField]="'gender'">Gender</clr-dg-column>
-  <clr-dg-column [clrDgField]="'status'">Status</clr-dg-column>
+          </clr-modal>
+        </clr-dg-action-bar>
 
-  <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
-    <clr-dg-cell>{{user.id}}</clr-dg-cell>
-    <clr-dg-cell>{{user.name}}</clr-dg-cell>
-    <clr-dg-cell>{{user.email}}</clr-dg-cell>
-    <clr-dg-cell>{{user.gender}}</clr-dg-cell>
-    <clr-dg-cell>{{user.status}}</clr-dg-cell>
-  </clr-dg-row>
+        <clr-dg-column [style.width.p]="20">ID</clr-dg-column>
+        <clr-dg-column>Name</clr-dg-column>
+        <clr-dg-column>Email</clr-dg-column>
+        <clr-dg-column [clrDgField]="'gender'">Gender</clr-dg-column>
+        <clr-dg-column [clrDgField]="'status'">Status</clr-dg-column>
 
-  <!-- to add new user list -->
+        <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
+          <clr-dg-cell>{{user.id}}</clr-dg-cell>
+          <clr-dg-cell>{{user.name}}</clr-dg-cell>
+          <clr-dg-cell>{{user.email}}</clr-dg-cell>
+          <clr-dg-cell>{{user.gender}}</clr-dg-cell>
+          <clr-dg-cell>{{user.status}}</clr-dg-cell>
+        </clr-dg-row>
 
-  <clr-dg-row *ngFor="let item of list">
-    <clr-dg-cell>{{item.id}}</clr-dg-cell>
-    <clr-dg-cell>{{item.name}}</clr-dg-cell>
-    <clr-dg-cell>{{item.email}}</clr-dg-cell>
-    <clr-dg-cell>{{item.gender}}</clr-dg-cell>
-    <clr-dg-cell>{{item.status}}</clr-dg-cell>
-  </clr-dg-row>
+        <!-- to add new user list -->
 
-
-</clr-datagrid>
+        <clr-dg-row *ngFor="let item of list">
+          <clr-dg-cell>{{item.id}}</clr-dg-cell>
+          <clr-dg-cell>{{item.name}}</clr-dg-cell>
+          <clr-dg-cell>{{item.email}}</clr-dg-cell>
+          <clr-dg-cell>{{item.gender}}</clr-dg-cell>
+          <clr-dg-cell>{{item.status}}</clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
+    </div>
+  </div>
+</clr-main-container>

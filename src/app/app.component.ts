@@ -75,7 +75,7 @@ export class AppComponent {
     });
   }
 
-  // to get changed input from the field
+  // to get every changed action input from the field
 
   sendTheNewValue(event: any) {
     this.value = event.target.value;
