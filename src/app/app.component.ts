@@ -39,10 +39,22 @@ export class AppComponent {
   // to open dialog box
   openModal() {
     this.open = true;
+    this.userForm.patchValue({
+      name: this.selected.name,
+      email: this.selected.email,
+      gender: this.selected.gender,
+      status: this.selected.status,
+    });
   }
 
-  openEditDialogModal() {
-    this.openEditModal = true;
+  edit() {
+    this.userForm.setValue({
+      name: this.selected.name,
+      email: this.selected.email,
+      gender: this.selected.gender,
+      status: this.selected.status,
+    });
+    this.open = false;
   }
 
   public getAllReports() {
@@ -82,9 +94,5 @@ export class AppComponent {
   sendTheNewValue(event: any) {
     this.value = event.target.value;
     console.log(this.value);
-  }
-
-  EditUser() {
-    this.openEditModal = false;
   }
 }
