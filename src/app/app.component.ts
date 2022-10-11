@@ -32,6 +32,8 @@ export class AppComponent {
       Validators.required,
       Validators.pattern(this.pattern),
     ]),
+    gender: new FormControl('', Validators.required),
+    status: new FormControl('', Validators.required),
   });
 
   // to open dialog box
@@ -50,10 +52,10 @@ export class AppComponent {
     });
   }
 
-  //to add values
+  //to add value
 
   addUser(name: string, email: string, status: string, gender: string) {
-    this.list.push({
+    this.users.push({
       id: (this.id -= 1),
       name: name,
       email: email,
